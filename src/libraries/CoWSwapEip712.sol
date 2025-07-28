@@ -24,11 +24,9 @@ library CoWSwapEip712 {
     /// Note that there are no checks to verify that the input address points to an actual contract.
     /// @return The domain separator of the settlement contract for the input address as computed by the settlement
     /// contract internally.
-    function domainSeparator(address cowSwapAddress)
-        internal
-        view
-        returns (bytes32)
-    {
+    function domainSeparator(
+        address cowSwapAddress
+    ) internal view returns (bytes32) {
         // NOTE: Currently, the only way to get the chain ID in solidity is using assembly.
         uint256 chainId;
         // solhint-disable-next-line no-inline-assembly

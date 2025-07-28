@@ -103,11 +103,10 @@ library ValidatedAddress {
         }
     }
 
-    function eq(string memory lhs, string memory rhs)
-        private
-        pure
-        returns (bool)
-    {
+    function eq(
+        string memory lhs,
+        string memory rhs
+    ) private pure returns (bool) {
         return keccak256(abi.encode(lhs)) == keccak256(abi.encode(rhs));
     }
 }

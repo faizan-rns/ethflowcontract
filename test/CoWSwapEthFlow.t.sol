@@ -71,18 +71,17 @@ contract EthFlowTestSetup is Test {
 
     // Unfortunately, even if the order mapping takes a bytes32 and returns a struct, Solidity interprets the output
     // struct as a tuple instead. This wrapping function puts back the ouput into the same struct.
-    function ordersMapping(bytes32 orderHash)
-        internal
-        view
-        returns (EthFlowOrder.OnchainData memory)
-    {
+    function ordersMapping(
+        bytes32 orderHash
+    ) internal view returns (EthFlowOrder.OnchainData memory) {
         (address owner, uint32 validTo) = ethFlow.orders(orderHash);
         return EthFlowOrder.OnchainData(owner, validTo);
     }
 
-    function mockOrderFilledAmount(bytes memory orderUid, uint256 amount)
-        public
-    {
+    function mockOrderFilledAmount(
+        bytes memory orderUid,
+        uint256 amount
+    ) public {
         vm.mockCall(
             address(cowSwap),
             abi.encodeWithSelector(
@@ -93,11 +92,9 @@ contract EthFlowTestSetup is Test {
         );
     }
 
-    function orderDetails(EthFlowOrder.Data memory order)
-        internal
-        view
-        returns (OrderDetails memory)
-    {
+    function orderDetails(
+        EthFlowOrder.Data memory order
+    ) internal view returns (OrderDetails memory) {
         bytes32 orderHash = order.toCoWSwapOrder(wrappedNativeToken).hash(
             ethFlow.cowSwapDomainSeparatorPublic()
         );
@@ -407,9 +404,10 @@ contract OrderDeletion is
         return order;
     }
 
-    function createOrderWithOwner(OrderDetails memory order, address owner)
-        public
-    {
+    function createOrderWithOwner(
+        OrderDetails memory order,
+        address owner
+    ) public {
         require(
             (order.data.sellAmount < (1 << 128)) &&
                 (order.data.feeAmount < (1 << 128)),

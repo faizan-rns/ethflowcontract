@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-pragma solidity ^0.8;
+pragma solidity ^0.8.4;
 
 import "../libraries/EthFlowOrder.sol";
 
@@ -44,10 +44,9 @@ interface ICoWSwapEthFlow is ICoWSwapEthFlowEvents {
     /// @param order The data describing the order to be created. See [`EthFlowOrder.Data`] for extra information on
     /// each parameter.
     /// @return orderHash The hash of the CoW Swap order that is created to settle the new ETH order.
-    function createOrder(EthFlowOrder.Data calldata order)
-        external
-        payable
-        returns (bytes32 orderHash);
+    function createOrder(
+        EthFlowOrder.Data calldata order
+    ) external payable returns (bytes32 orderHash);
 
     /// @dev Marks existing ETH-flow orders as invalid and, for each order, refunds the ETH that hasn't been traded yet.
     /// The function call will not revert, if some orders are not refundable. It will silently ignore these orders.
@@ -75,10 +74,10 @@ interface ICoWSwapEthFlow is ICoWSwapEthFlowEvents {
     /// order is already available onchain.
     /// @return magicValue Either the EIP-1271 "magic value" indicating success (0x1626ba7e) or a different value
     /// indicating failure (0xffffffff).
-    function isValidSignature(bytes32 orderHash, bytes memory signature)
-        external
-        view
-        returns (bytes4 magicValue);
+    function isValidSignature(
+        bytes32 orderHash,
+        bytes memory signature
+    ) external view returns (bytes4 magicValue);
 
     /// @dev This function reads the  chain's native token balance of this contract (e.g., ETH for mainnet) and converts
     // the entire amount to its wrapped version (e.g., WETH).

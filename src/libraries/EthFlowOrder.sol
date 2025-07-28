@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-pragma solidity ^0.8;
+pragma solidity ^0.8.4;
 
 import "../vendored/GPv2Order.sol";
 import "../vendored/IERC20.sol";
@@ -60,11 +60,10 @@ library EthFlowOrder {
     /// @param wrappedNativeToken The address of the wrapped native token for the current network (e.g., WETH for
     /// Ethereum mainet).
     /// @return The CoW Swap order data that represents the user order in the ETH flow contract.
-    function toCoWSwapOrder(Data memory order, IERC20 wrappedNativeToken)
-        internal
-        pure
-        returns (GPv2Order.Data memory)
-    {
+    function toCoWSwapOrder(
+        Data memory order,
+        IERC20 wrappedNativeToken
+    ) internal pure returns (GPv2Order.Data memory) {
         if (order.receiver == GPv2Order.RECEIVER_SAME_AS_OWNER) {
             // The receiver field specified which address is going to receive the proceeds from the orders. If using
             // `RECEIVER_SAME_AS_OWNER`, then the receiver is implicitly assumed by the CoW Swap Protocol to be the

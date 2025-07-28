@@ -14,12 +14,12 @@ contract CoWSwapOnchainOrdersExposed is CoWSwapOnchainOrders {
 
     /// @param settlementContractAddress The address of CoW Swap's settlement contract on the chain where this contract
     /// is deployed.
-    constructor(address settlementContractAddress)
+    constructor(
+        address settlementContractAddress
+    )
         CoWSwapOnchainOrders(settlementContractAddress)
     // solhint-disable-next-line no-empty-blocks
-    {
-
-    }
+    {}
 
     function broadcastOrderPublic(
         address sender,

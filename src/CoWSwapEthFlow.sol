@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
-pragma solidity ^0.8;
+pragma solidity ^0.8.4;
 
 import "./libraries/EthFlowOrder.sol";
 import "./interfaces/ICoWSwapSettlement.sol";
@@ -78,11 +78,9 @@ contract CoWSwapEthFlow is
     }
 
     /// @inheritdoc ICoWSwapEthFlow
-    function createOrder(EthFlowOrder.Data calldata order)
-        external
-        payable
-        returns (bytes32 orderHash)
-    {
+    function createOrder(
+        EthFlowOrder.Data calldata order
+    ) external payable returns (bytes32 orderHash) {
         if (msg.value != order.sellAmount + order.feeAmount) {
             revert IncorrectEthAmount();
         }
@@ -247,7 +245,10 @@ contract CoWSwapEthFlow is
     }
 
     /// @inheritdoc ICoWSwapEthFlow
-    function isValidSignature(bytes32 orderHash, bytes memory)
+    function isValidSignature(
+        bytes32 orderHash,
+        bytes memory
+    )
         external
         view
         override(EIP1271Verifier, ICoWSwapEthFlow)

@@ -12,9 +12,7 @@ contract CoWSwapEthFlowExposed is CoWSwapEthFlow {
     )
         CoWSwapEthFlow(settlementContractAddress, wrappedNativeToken)
     // solhint-disable-next-line no-empty-blocks
-    {
-
-    }
+    {}
 
     function cowSwapDomainSeparatorPublic() public view returns (bytes32) {
         return cowSwapDomainSeparator;
