@@ -1,4 +1,5 @@
 {
+  "name": "@cowprotocol/ethflowcontract",
   "license": "LGPL-3.0-or-later",
   "devDependencies": {
     "prettier": "^2.7.1",
